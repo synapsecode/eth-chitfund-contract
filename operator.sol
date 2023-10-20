@@ -41,15 +41,23 @@ contract OperatorContract {
         require(amt <= address(this).balance, "MAX_AMT_REACHED");
         // uint bal = address(this).balance;
         // uint diff = bal - amount;
+        //if amount is zero, distribute to everyone
         member.transfer(amt);
-        distributeBalanceToEveryone(member);
+        if(amount == 0 ether){
+             distributeBalanceToEveryone(member, false);
+        } else{
+            distributeBalanceToEveryone(member, true);
+        }
+        
     }
 
-    function distributeBalanceToEveryone(address excludedMember) public {
-        uint amt =  address(this).balance / (paidMembersList.length - 1);
+    function distributeBalanceToEveryone(address excludedMember, bool considerExclusion) internal {
+        uint8 subv = 0;
+        if(considerExclusion) subv = 1;
+        uint amt =  address(this).balance / (paidMembersList.length - subv );
         for (uint i=0; i<paidMembersList.length; i++) {
             address payable member = paidMembersList[i];
-            if(member == excludedMember) continue;
+            if(member == excludedMember && considerExclusion) continue;
             member.transfer(amt);
         }
     }
