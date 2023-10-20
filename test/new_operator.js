@@ -23,11 +23,16 @@ describe("Operator Contract (NEW)", function () {
         const OperatorContractFactory = await ethers.getContractFactory('OperatorContract');
         const operatorContract = await OperatorContractFactory.deploy(
             3,
-            inr2wei(30_000),
-            beneficiary
+            inr2wei(10_000),
         );
         contractInstance = operatorContract;
         console.info('Contract Instantiated!');
+    })
+
+    it('Beneficiary should be set correctly', async () => {
+        const [owner, manas, koushik, somu] = await ethers.getSigners();
+        await contractInstance.setBeneficiary(somu.address);
+        expect(await contractInstance.beneficiary()).to.equal(somu.address);
     })
 
     it(`Manas, Koushik & Somnath send ${monthlyDeposit} INR Each`, async () => {

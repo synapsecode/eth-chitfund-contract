@@ -6,21 +6,27 @@ pragma solidity ^0.8.18;
     uint memberSize;
     uint poolSize;
     address payable public beneficiary;
+    uint chitAmount;
 
     //Store whoever sent money
     address payable[] public paidMembersList;
     mapping(address => bool) public paidMembers;
 
-    constructor(uint _memberSize, uint _poolSize, address payable _beneficiary) {
+    constructor(uint _memberSize, uint _chitAmount) {
         contractOwner = msg.sender;
         memberSize = _memberSize;
-        poolSize = _poolSize;
+        poolSize = _memberSize * _chitAmount;
+        chitAmount = _chitAmount;
+    }
+
+    function setBeneficiary(address payable _beneficiary) public {
         beneficiary = _beneficiary;
     }
 
-      function sendMoneyToOperator() public payable {
+    function sendMoneyToOperator() public payable {
         require(paidMembersList.length < memberSize, "MAX_MEMBERS_REACHED");
         require(msg.value > 0 wei, "ZERO_DEPOSIT");
+        require(msg.value <= chitAmount, "EXCEEDED_CHIT_VALUE");
         // require(paidMembers[msg.sender] = false, "REPEAT_DEPOSIT");
         paidMembers[msg.sender] = true;
         paidMembersList.push(payable(msg.sender));        
