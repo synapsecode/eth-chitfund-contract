@@ -1,0 +1,75 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "/Users/manashejmadi/Dev/EthChitFund/chitfund-contract/contracts/new_operator.sol": {
+      "lastModificationDate": 1697825313521,
+      "contentHash": "85f60b4bbce5098f20607487bc5de889",
+      "sourceName": "contracts/new_operator.sol",
+      "solcConfig": {
+        "version": "0.8.19",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.18"
+      ],
+      "artifacts": [
+        "OperatorContract"
+      ]
+    },
+    "/Users/manashejmadi/Dev/EthChitFund/chitfund-contract/contracts/old_operator.sol": {
+      "lastModificationDate": 1697822555520,
+      "contentHash": "4c853bccd7b5daa0fa03f4149cd92ebe",
+      "sourceName": "contracts/old_operator.sol",
+      "solcConfig": {
+        "version": "0.8.19",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.18"
+      ],
+      "artifacts": [
+        "OperatorContractOld"
+      ]
+    }
+  }
+}

@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.18;
 
-contract OperatorContract {
+contract OperatorContractOld {
     address public contractOwner;
     uint memberSize;
     uint duration;

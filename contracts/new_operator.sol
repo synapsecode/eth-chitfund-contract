@@ -10,7 +10,7 @@ pragma solidity ^0.8.18;
     address payable[] public paidMembersList;
     mapping(address => bool) public paidMembers;
 
-    constructor(uint _memberSize, uint _poolSize) payable {
+    constructor(uint _memberSize, uint _poolSize) {
         contractOwner = msg.sender;
         memberSize = _memberSize;
         poolSize = _poolSize;
@@ -19,7 +19,7 @@ pragma solidity ^0.8.18;
       function sendMoneyToOperator() public payable {
         require(paidMembersList.length < memberSize, "MAX_MEMBERS_REACHED");
         require(msg.value > 0 wei, "ZERO_DEPOSIT");
-        require(paidMembers[msg.sender] = false, "REPEAT_DEPOSIT");
+        // require(paidMembers[msg.sender] = false, "REPEAT_DEPOSIT");
         paidMembers[msg.sender] = true;
         paidMembersList.push(payable(msg.sender));        
     }
