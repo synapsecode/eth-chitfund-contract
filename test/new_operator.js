@@ -9,16 +9,22 @@ describe("Operator Contract (NEW)", function () {
 
     let contractInstance;
     let monthlyDeposit = 10000;
+    let beneficiary;
+
 
     /*Logic:
     Manas, Koushik, Somu each put 10K rupees into the chitfund for 3 months and hence, the pool is worth 30K
     */
 
     it('Should be Deployed', async () => {
+        const [owner, manas, koushik, somu] = await ethers.getSigners();
+        beneficiary = somu.address;
+
         const OperatorContractFactory = await ethers.getContractFactory('OperatorContract');
         const operatorContract = await OperatorContractFactory.deploy(
             3,
-            inr2wei(30_000)
+            inr2wei(30_000),
+            beneficiary
         );
         contractInstance = operatorContract;
         console.info('Contract Instantiated!');
@@ -51,5 +57,13 @@ describe("Operator Contract (NEW)", function () {
         // console.log(await ethers.provider.getBalance(manas.address));
         // console.log(await ethers.provider.getBalance(koushik.address));
         // console.log(await ethers.provider.getBalance(somu.address));
+    });
+
+    it('Beneficiary is able to withdraw funds', async () => {
+        const originalBalance = await ethers.provider.getBalance(beneficiary);
+        await contractInstance.withdraw();
+        const finalBalance = await ethers.provider.getBalance(beneficiary);
+        expect(originalBalance).to.lessThan(finalBalance);
+        expect(await contractInstance.getBalance()).to.equal(0);
     });
 });

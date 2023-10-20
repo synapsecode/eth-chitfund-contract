@@ -5,15 +5,17 @@ pragma solidity ^0.8.18;
     address public contractOwner;
     uint memberSize;
     uint poolSize;
+    address payable public beneficiary;
 
     //Store whoever sent money
     address payable[] public paidMembersList;
     mapping(address => bool) public paidMembers;
 
-    constructor(uint _memberSize, uint _poolSize) {
+    constructor(uint _memberSize, uint _poolSize, address payable _beneficiary) {
         contractOwner = msg.sender;
         memberSize = _memberSize;
         poolSize = _poolSize;
+        beneficiary = _beneficiary;
     }
 
       function sendMoneyToOperator() public payable {
@@ -28,10 +30,9 @@ pragma solidity ^0.8.18;
         return address(this).balance;
     }
 
-    function withdraw(address payable member) public {
-        require(paidMembers[member] == true, "NON_MEMBER_WITHDRAW");
+    function withdraw() public {
         uint bal = address(this).balance;
-        member.transfer(bal);
+        beneficiary.transfer(bal);
     }
 
  }

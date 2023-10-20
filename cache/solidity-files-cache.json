@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/Users/manashejmadi/Dev/EthChitFund/chitfund-contract/contracts/new_operator.sol": {
-      "lastModificationDate": 1697825313521,
-      "contentHash": "85f60b4bbce5098f20607487bc5de889",
+      "lastModificationDate": 1697834632016,
+      "contentHash": "404e95c25775ef56169f8c5b6a9ed2f2",
       "sourceName": "contracts/new_operator.sol",
       "solcConfig": {
         "version": "0.8.19",
